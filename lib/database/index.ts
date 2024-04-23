@@ -14,7 +14,11 @@ export const connectToDatabase = async () => {
         bufferCommands: false,
     })
 
+    console.log("Got to this point before the connection")
+
     cached.conn = await cached.promise
+
+    console.log("Got to this point after the connection")
 
     return cached.conn;
 }
