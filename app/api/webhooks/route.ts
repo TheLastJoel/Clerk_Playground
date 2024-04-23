@@ -59,26 +59,29 @@ export async function POST(req: Request) {
 
   // NEW CODE
 
-  // if(eventType === 'user.created') {
+  if(eventType === 'user.created') {
 
+    console.log(" event type is user.created")
 
-  //   const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
+    const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
 
-  //   const user = {
-  //     clerkId: id,
-  //     email: email_addresses[0].email_address,
-  //     username: username!,
-  //     firstName: first_name!,
-  //     lastName: last_name!,
-  //     photo: image_url,
-  //   }
-  //   try{
-  //     await createUser(user);
-  //     return new Response('Created User', {status: 200})
-  //   } catch(err) {
-  //     return new Response("Failed to create user", {status: 502})
-  //   }
-  // }
+    const user = {
+      clerkId: id,
+      email: email_addresses[0].email_address,
+      username: username!,
+      firstName: first_name!,
+      lastName: last_name!,
+      photo: image_url,
+    }
+    try{
+      await createUser(user);
+      console.log("User was successfully created")
+      return new Response('Created User', {status: 200})
+    } catch(err) {
+      console.log("failed to create user" + err)
+      return new Response("Failed to create user", {status: 502})
+    }
+  }
 
   // END NEW CODE
   console.log("Hey we got here alright")
