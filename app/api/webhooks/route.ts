@@ -82,6 +82,6 @@ export async function POST(req: Request) {
 
   // END NEW CODE
  
-  return new Response('No Action Was Taken But Webhook Worked', { status: 200 })
+  return NextResponse.json({ message: 'Anybody out there'}, {status: 210})
 }
  
