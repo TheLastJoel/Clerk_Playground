@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-
+import mongoose, { mongo } from 'mongoose'
 import { connectToDatabase } from '../database'
 import User from '../database/models/user.models'
 
@@ -10,13 +10,16 @@ import { CreateUserParams, UpdateUserParams } from '@/types'
 export async function createUser(user: CreateUserParams) {
 
   try {
-    await connectToDatabase()
-    const newUser = await User.create(user)
-    console.log(newUser.email + "was created")
-    return JSON.parse(JSON.stringify(newUser))
+    if(process.env.MONGODB_URI){
+      mongoose.connect(process.env.MONGODB_URI).catch(error => console.log("THERE WAS AN ERROR" + error))
+      const newUser = await User.create(user)
+      console.log(newUser.email + "was created")
+      return JSON.parse(JSON.stringify(newUser))
+    }
   } catch (error) {
     console.log("The New User Was Not Created")
   }
+
 }
 
 export async function getUserById(userId: string) {
