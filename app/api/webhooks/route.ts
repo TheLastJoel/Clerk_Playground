@@ -81,7 +81,7 @@ export async function POST(req: Request) {
   // }
 
   // END NEW CODE
- 
+  console.log("Hey we got here alright")
   return NextResponse.json({ message: 'Anybody out there'}, {status: 210})
 }
- 
+  
