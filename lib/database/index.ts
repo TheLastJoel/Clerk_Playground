@@ -9,10 +9,7 @@ export const connectToDatabase = async () => {
     if (cached.conn) return cached.conn;
     if(!MONGODB_URI) throw new Error(`MONGODB URI is missing`);
 
-    cached.promise = cached.promise || mongoose.connect(MONGODB_URI, {
-        dbName: 'playground',
-        bufferCommands: false,
-    })
+    cached.promise = mongoose.connect(MONGODB_URI)
 
     console.log("Got to this point before the connection")
     console.log(cached)
