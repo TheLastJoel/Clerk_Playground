@@ -16,7 +16,7 @@ export async function createUser(user: CreateUserParams) {
     console.log(newUser.email + "was created")
     return JSON.parse(JSON.stringify(newUser))
   } catch (error) {
-    console.log(error)
+    console.log("The New User Was Not Created")
   }
 }
 
