@@ -13,7 +13,6 @@ export async function createUser(user: CreateUserParams) {
     if(process.env.MONGODB_URI){
       mongoose.connect(process.env.MONGODB_URI).catch(error => console.log("THERE WAS AN ERROR" + error))
       const newUser = await User.create(user)
-      console.log(newUser.email + "was created")
       return JSON.parse(JSON.stringify(newUser))
     }
   } catch (error) {
